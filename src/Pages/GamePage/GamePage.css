@@ -1,0 +1,32 @@
+.game-layout {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  margin-top: 20px;
+}
+
+.results {
+  overflow: scroll;
+  height: 600px;
+  width: 250px;
+  flex: 1;
+}
+
+.game-controller {
+  border: 1px solid black;
+  flex: 2;
+}
+
+.game-navbar {
+  flex: 1;
+}
+
+.timer-and-evaluation {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  background-color: red;
+  width: 80%;
+  margin: auto;
+}

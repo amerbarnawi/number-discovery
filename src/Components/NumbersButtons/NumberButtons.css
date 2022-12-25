@@ -1,0 +1,16 @@
+.numbers-buttons {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 60%;
+  border: 1px solid red;
+  margin: 30px auto;
+  padding: 10px;
+  justify-content: space-around;
+}
+
+.numbers-buttons button {
+  width: 30%;
+  margin-top: 10px;
+  height: 30px;
+}

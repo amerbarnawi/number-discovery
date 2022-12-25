@@ -1,0 +1,20 @@
+.navbar-buttons {
+  display: flex;
+  width: 30%;
+  margin: 30px auto;
+  justify-content: space-between;
+}
+
+.navbar-button {
+  cursor: pointer;
+  margin-left: 20px;
+}
+
+.navbar-icon {
+  font-size: 30px;
+}
+
+.link {
+  color: black;
+  text-decoration: none;
+}

@@ -1,0 +1,8 @@
+.timer-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 50%;
+  background-color: yellow;
+  margin: 30px auto;
+}

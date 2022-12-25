@@ -1,4 +1,5 @@
 import React from "react";
+import "../UserNumInputs/UserNumInputs.css";
 
 function UserNumInputs({ userNumber, setNumbers, inputRef }) {
   return (
