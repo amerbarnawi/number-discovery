@@ -9,6 +9,10 @@ import { v4 as uuid } from "uuid";
 import { useGlobalVariables } from "../../Context/GlobalVariables";
 import FinalReport from "../../Components/FinalReport/FinalReport";
 import { BsCardChecklist } from "react-icons/bs";
+import Popup from "../../Components/Popup/Popup";
+import RestartPopup from "../../Components/PopupComponents/RestartPopup/RestartPopup";
+import HomePagePopup from "../../Components/PopupComponents/HomePagePopup/HomePagePopup";
+import { Navigate } from "react-router-dom";
 
 function GamePage() {
   const [isLost, setIsLost] = useState(false);
@@ -16,6 +20,8 @@ function GamePage() {
   const [comparingResult, setComparingResult] = useState([]);
   const [message, setMessage] = useState({});
   const [isRestart, setIsRestart] = useState(true);
+  const [isPopupTrigger, setIsPopupTrigger] = useState({ status: false });
+  const [isNavigate, setIsNavigate] = useState(false);
   const [userNumber, setUserNumber] = useState({
     firstNum: "",
     secondNum: "",
@@ -269,8 +275,29 @@ function GamePage() {
           setIsRestart={setIsRestart}
           message={message}
           setMessage={setMessage}
+          setIsPopupTrigger={setIsPopupTrigger}
         />
       </div>
+      <Popup
+        className="delete-popup"
+        isTrigger={isPopupTrigger}
+        setIsPopupTrigger={setIsPopupTrigger}
+      >
+        {isPopupTrigger["restart"] ? (
+          <RestartPopup
+            setIsPopupTrigger={setIsPopupTrigger}
+            setIsRestart={setIsRestart}
+          />
+        ) : isPopupTrigger["homepage"] ? (
+          <HomePagePopup
+            setIsPopupTrigger={setIsPopupTrigger}
+            setIsNavigate={setIsNavigate}
+          />
+        ) : (
+          ""
+        )}
+      </Popup>
+      {isNavigate ? <Navigate to="/" /> : ""}
     </div>
   );
 }

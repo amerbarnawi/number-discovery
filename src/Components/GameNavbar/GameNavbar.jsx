@@ -9,7 +9,13 @@ import ImportantCards from "../ImportantCards/ImportantCards";
 import { useGlobalVariables } from "../../Context/GlobalVariables";
 import Report from "../Report/Report";
 
-function GameNavbar({ setIsRestart, message, setMessage }) {
+function GameNavbar({
+  setIsRestart,
+  message,
+  setMessage,
+  setIsPopupTrigger,
+  setISHomePage,
+}) {
   const { isReport, setIsReport, isWon } = useGlobalVariables();
 
   useEffect(() => {
@@ -24,14 +30,20 @@ function GameNavbar({ setIsRestart, message, setMessage }) {
   return (
     <div className="navbar-box">
       <div className="navbar-buttons">
-        <NavLink to="/" className="link">
-          <div className="navbar-button">
-            <ImHome className="navbar-icon" />
-            <p>Home</p>
-          </div>
-        </NavLink>
+        <div
+          className="navbar-button"
+          onClick={() => {
+            setIsPopupTrigger({ status: true, homepage: true });
+          }}
+        >
+          <ImHome className="navbar-icon" />
+          <p>Home</p>
+        </div>
 
-        <div className="navbar-button" onClick={() => setIsRestart(true)}>
+        <div
+          className="navbar-button"
+          onClick={() => setIsPopupTrigger({ status: true, restart: true })}
+        >
           <RiRestartFill className="navbar-icon" />
           <p>Restart</p>
         </div>
