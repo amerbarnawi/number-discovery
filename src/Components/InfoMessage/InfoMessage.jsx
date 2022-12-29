@@ -9,7 +9,7 @@ function InfoMessage({ message }) {
       <div>
         {message.status === "error" ? <MdOutlineError /> : <TiMessages />}
       </div>
-      <h3>{message.status === "error" ? <p>error</p> : <p>Message</p>}</h3>
+      <h3>{message.status === "error" ? <p>Note</p> : <p>Message</p>}</h3>
       <p>{message.text}</p>
     </div>
   );

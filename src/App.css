@@ -1,3 +1,11 @@
 .App {
   text-align: center;
 }
+
+.hidden {
+  display: none;
+}
+
+.final-report {
+  width: 100%;
+}

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useGlobalVariables } from "../../Context/GlobalVariables";
 import "./Timer.css";
 
 function Timer({ isRestart }) {
@@ -6,31 +7,55 @@ function Timer({ isRestart }) {
   const [minute, setMinute] = useState(0);
   const [hour, setHour] = useState(0);
 
+  const { setTime, isReport, isWon, setEndTime } = useGlobalVariables();
+  const time = `${hour}:${minute}:${second}`;
+  // The end time per minute
+  const endTime = hour * 60 + minute + second / 60;
+
   useEffect(() => {
-    setSecond(0);
-    setMinute(0);
-    setHour(0);
+    if (isWon) {
+      setTime(time);
+      setEndTime(endTime);
+    } else if (isReport) {
+      setTime(time);
+    }
+  });
+
+  useEffect(() => {
+    if (isWon) {
+      setTime(time);
+    }
+  }, [isWon, time, setTime]);
+
+  useEffect(() => {
+    if (isRestart) {
+      setSecond(0);
+      setMinute(0);
+      setHour(0);
+    }
   }, [isRestart]);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      if (second < 59) {
-        setSecond(second + 1);
-      } else {
-        setSecond(0);
-        setMinute(minute + 1);
-
-        if (minute < 59) {
-          setMinute(minute + 1);
+    if (!isWon) {
+      const interval = setInterval(() => {
+        if (second < 59) {
+          setSecond(second + 1);
         } else {
-          setMinute(0);
-          setHour(hour + 1);
-        }
-      }
-    }, 1000);
+          setSecond(0);
+          setMinute(minute + 1);
 
-    return () => clearInterval(interval);
-  }, [second, minute, hour]);
+          if (minute < 59) {
+            setMinute(minute + 1);
+          } else {
+            setMinute(0);
+            setHour(hour + 1);
+          }
+        }
+      }, 1000);
+
+      return () => clearInterval(interval);
+    }
+  }, [second, minute, hour, isWon]);
 
   return (
     <div className="timer-container">

@@ -1,0 +1,18 @@
+.final-report {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+img {
+  width: 200px;
+}
+
+.user-evaluations {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 60%;
+  border: 1px solid black;
+  padding: 10px;
+}

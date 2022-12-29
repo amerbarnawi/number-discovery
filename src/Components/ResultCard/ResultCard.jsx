@@ -3,13 +3,11 @@ import { BsPatchMinusFill, BsPatchPlusFill } from "react-icons/bs";
 import "../ResultCard/ResultCard.css";
 import { TfiSave } from "react-icons/tfi";
 import { AiOutlineDelete } from "react-icons/ai";
+import { useGlobalVariables } from "../../Context/GlobalVariables";
 
-function ResultCard({
-  comparingResult,
-  setImportantCards,
-  importantCards,
-  status,
-}) {
+function ResultCard({ comparingResult, status }) {
+  const { importantCards, setImportantCards } = useGlobalVariables();
+
   const filterImportantCards = (e) => {
     const clickedCardId = e.target.id;
     const newImportantCards = importantCards.filter(

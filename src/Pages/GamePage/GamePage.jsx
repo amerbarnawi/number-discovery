@@ -6,15 +6,16 @@ import TimerAndEvaluation from "../../Components/TimerAndEvaluation/TimerAndEval
 import UserNumInputs from "../../Components/UserNumInputs/UserNumInputs";
 import "../GamePage/GamePage.css";
 import { v4 as uuid } from "uuid";
+import { useGlobalVariables } from "../../Context/GlobalVariables";
+import FinalReport from "../../Components/FinalReport/FinalReport";
+import { BsCardChecklist } from "react-icons/bs";
 
 function GamePage() {
+  const [isLost, setIsLost] = useState(false);
   const [computerNumbers, setComputerNumbers] = useState({});
   const [comparingResult, setComparingResult] = useState([]);
-  const [importantCards, setImportantCards] = useState([]);
   const [message, setMessage] = useState({});
   const [isRestart, setIsRestart] = useState(true);
-  const [star, setStar] = useState(0);
-  const [brain, setBrain] = useState(10);
   const [userNumber, setUserNumber] = useState({
     firstNum: "",
     secondNum: "",
@@ -22,10 +23,45 @@ function GamePage() {
     fourthNum: "",
   });
 
+  const {
+    importantCards,
+    setImportantCards,
+    star,
+    setStar,
+    brain,
+    setBrain,
+    isWon,
+    setIsWon,
+  } = useGlobalVariables();
+
+  // ===============================================================
+  // In case of restart
+  useEffect(() => {
+    if (isRestart) {
+      setBrain(10);
+      setStar(0);
+      setComparingResult([]);
+      restUserNumbers();
+      setIsLost(false);
+      setIsWon(false);
+      setImportantCards([]);
+    }
+  }, [isRestart]);
+
+  // ===============================================================
+  // In case the user lost the 10 brains then he/she lost.
+  useEffect(() => {
+    if (brain === 0) {
+      setIsLost(true);
+      setMessage({ status: "message", text: "You lost! try again :)" });
+    }
+  }, [brain]);
+
   useEffect(() => {
     console.log(computerNumbers);
   }, [computerNumbers]);
 
+  // ===============================================================
   // Generating computer random numbers.
   useEffect(() => {
     const random = () => Math.floor(Math.random() * 10);
@@ -39,23 +75,7 @@ function GamePage() {
     setMessage({ status: "message", text: "Welcome, you can start!" });
   }, [isRestart]);
 
-  useEffect(() => {
-    if (message.status === "error") {
-      const timeOut = setTimeout(() => {
-        setMessage({ status: "message", text: "Keep going .." });
-      }, 3000);
-      return () => clearInterval(timeOut);
-    }
-  }, [message]);
-
-  // In case of restart
-  useEffect(() => {
-    setBrain(10);
-    setStar(0);
-    setComparingResult([]);
-    restUserNumbers();
-  }, [isRestart]);
-
+  // ===============================================================
   // Adding references to the inputs for focusing.
   const inputRef = {
     firstInputRef: useRef(null),
@@ -73,6 +93,7 @@ function GamePage() {
     });
   };
 
+  // ===============================================================
   // To create the user number.
   const setNumbers = (chosenNumber) => {
     if (userNumber.firstNum === "") {
@@ -97,6 +118,49 @@ function GamePage() {
     }
   };
 
+  // ===============================================================
+  const getBrainAndStarEvaluation = (userNumberArray, lastResult) => {
+    // Cases of losing brain
+    const isRepeated = comparingResult.find((item) => {
+      return item.userNumber.join("") === userNumberArray.join("");
+    });
+    if (isRepeated) {
+      setBrain(brain - 1);
+      setMessage({ status: "error", text: "You tried this number before!" });
+    }
+
+    const isAllEqual = userNumberArray.every(
+      (number) => number === userNumberArray[0]
+    );
+    if (isAllEqual) {
+      setBrain(brain - 1);
+    }
+    // Cases of gaining brain
+    const isFirstPositive = comparingResult.find(
+      (item) => item.result.join("") === lastResult.join("")
+    );
+    const isPositive =
+      lastResult.filter((sign) => sign === "+").length > 2 ? true : false;
+    if (isPositive && !isRepeated) {
+      setStar(star + 1);
+      if (!isFirstPositive) {
+        setBrain(brain + 1);
+      }
+    }
+  };
+
+  // ===============================================================
+  // Chick if the user won
+  const checkIfWon = (lastResult) => {
+    const isUserWon =
+      lastResult.filter((sign) => sign === "+").length > 3 ? true : false;
+    if (isUserWon) {
+      setIsWon(true);
+      setMessage({ status: "message", text: "Congrats, you won!" });
+    }
+  };
+
+  // ===============================================================
   // Comparing the computer number with the user number ( The game logic ).
   const compareNumbers = () => {
     if (
@@ -115,9 +179,7 @@ function GamePage() {
       +userNumber.thirdNum,
       +userNumber.fourthNum,
     ];
-
     const userNumberCopy = [...userNumberArray];
-
     const computerNumbersArray = [
       +computerNumbers.firstNum,
       +computerNumbers.secondNum,
@@ -126,7 +188,6 @@ function GamePage() {
     ];
 
     const lastResult = [];
-
     const parallelComparison = (user, computer) => {
       user.forEach((number, userNumIndex) => {
         computer.forEach((computerNumber, computerNumIndex) => {
@@ -138,7 +199,6 @@ function GamePage() {
         });
       });
     };
-
     const crossComparison = (user, computer) => {
       user.forEach((number, userNumIndex) => {
         computer.forEach((computerNumber, computerNumIndex) => {
@@ -157,17 +217,22 @@ function GamePage() {
     if (lastResult.length === 0) {
       lastResult.push("No numbers");
     }
-    setComparingResult([...comparingResult, lastResult]);
+
     setComparingResult([
       { id: uuid(), userNumber: userNumberArray, result: lastResult },
       ...comparingResult,
     ]);
     restUserNumbers();
+    getBrainAndStarEvaluation(userNumberArray, lastResult);
+    checkIfWon(lastResult);
   };
-
+  // ===============================================================
   return (
     <div className="game-layout">
       <div className="results">
+        <p>
+          <BsCardChecklist /> Attempts: {comparingResult.length}
+        </p>
         {comparingResult.map((result, index) => (
           <ResultCard
             key={index}
@@ -177,28 +242,33 @@ function GamePage() {
           />
         ))}
       </div>
+
       <div className="game-controller">
-        <TimerAndEvaluation brain={brain} star={star} isRestart={isRestart} />
-        <UserNumInputs
-          userNumber={userNumber}
-          setUserNumber={setUserNumber}
-          setNumbers={setNumbers}
-          inputRef={inputRef}
-        />
-        <NumberButtons
-          userNumber={userNumber}
-          setUserNumber={setUserNumber}
-          setNumbers={setNumbers}
-          restUserNumbers={restUserNumbers}
-          compareNumbers={compareNumbers}
-        />
+        <div className={isWon ? "final-report" : "hidden"}>
+          <FinalReport comparingResult={comparingResult} />
+        </div>
+
+        <div className={isWon ? "hidden" : "main-side"}>
+          <TimerAndEvaluation isRestart={isRestart} />
+          <UserNumInputs
+            userNumber={userNumber}
+            setNumbers={setNumbers}
+            inputRef={inputRef}
+          />
+          <NumberButtons
+            setNumbers={setNumbers}
+            restUserNumbers={restUserNumbers}
+            compareNumbers={compareNumbers}
+            isLost={isLost}
+            isWon={isWon}
+          />
+        </div>
       </div>
       <div className="game-navbar">
         <GameNavbar
           setIsRestart={setIsRestart}
           message={message}
-          importantCards={importantCards}
-          setImportantCards={setImportantCards}
+          setMessage={setMessage}
         />
       </div>
     </div>
