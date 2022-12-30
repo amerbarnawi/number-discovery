@@ -22,6 +22,11 @@ function GamePage() {
   const [isRestart, setIsRestart] = useState(true);
   const [isPopupTrigger, setIsPopupTrigger] = useState({ status: false });
   const [isNavigate, setIsNavigate] = useState(false);
+  const [arrow, setArrow] = useState({
+    brainUp: false,
+    brainDown: false,
+    starUp: false,
+  });
   const [userNumber, setUserNumber] = useState({
     firstNum: "",
     secondNum: "",
@@ -42,24 +47,33 @@ function GamePage() {
 
   // ===============================================================
   // In case of restart
+  const Restart = () => {
+    setBrain(10);
+    setStar(0);
+    setComparingResult([]);
+    restUserNumbers();
+    setIsLost(false);
+    setIsWon(false);
+    setImportantCards([]);
+    setArrow({
+      brainUp: false,
+      brainDown: false,
+      starUp: false,
+    });
+  };
+
   useEffect(() => {
     if (isRestart) {
-      setBrain(10);
-      setStar(0);
-      setComparingResult([]);
-      restUserNumbers();
-      setIsLost(false);
-      setIsWon(false);
-      setImportantCards([]);
+      Restart();
     }
-  }, [isRestart]);
+  });
 
   // ===============================================================
   // In case the user lost the 10 brains then he/she lost.
   useEffect(() => {
     if (brain === 0) {
       setIsLost(true);
-      setMessage({ status: "message", text: "You lost! try again :)" });
+      setMessage({ status: "message", text: "You lost! try again!" });
     }
   }, [brain]);
 
@@ -132,6 +146,7 @@ function GamePage() {
     });
     if (isRepeated) {
       setBrain(brain - 1);
+      setArrow({ ...arrow, brainDown: true, brainUp: false });
       setMessage({ status: "error", text: "You tried this number before!" });
     }
 
@@ -140,6 +155,7 @@ function GamePage() {
     );
     if (isAllEqual) {
       setBrain(brain - 1);
+      setArrow({ ...arrow, brainDown: true, brainUp: false });
     }
     // Cases of gaining brain
     const isFirstPositive = comparingResult.find(
@@ -151,6 +167,7 @@ function GamePage() {
       setStar(star + 1);
       if (!isFirstPositive) {
         setBrain(brain + 1);
+        setArrow({ starUp: true, brainUp: true, brainDown: false });
       }
     }
   };
@@ -255,7 +272,11 @@ function GamePage() {
         </div>
 
         <div className={isWon ? "hidden" : "main-side"}>
-          <TimerAndEvaluation isRestart={isRestart} />
+          <TimerAndEvaluation
+            isRestart={isRestart}
+            setArrow={setArrow}
+            arrow={arrow}
+          />
           <UserNumInputs
             userNumber={userNumber}
             setNumbers={setNumbers}

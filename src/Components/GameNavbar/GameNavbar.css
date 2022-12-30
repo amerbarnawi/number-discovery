@@ -18,3 +18,7 @@
   color: black;
   text-decoration: none;
 }
+
+.arrow-hidden {
+  display: none;
+}
