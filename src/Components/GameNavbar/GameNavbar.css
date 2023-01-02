@@ -1,13 +1,13 @@
 .navbar-buttons {
   display: flex;
-  width: 30%;
+  width: 80%;
   margin: 30px auto;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 .navbar-button {
   cursor: pointer;
-  margin-left: 20px;
+  margin-left: 30px;
 }
 
 .navbar-icon {

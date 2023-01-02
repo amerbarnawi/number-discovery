@@ -2,7 +2,14 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  width: 50%;
-  background-color: yellow;
+  width: 40%;
   margin: 30px auto;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid rgb(206, 204, 204);
+  border-radius: 20px;
+}
+
+.timer-number {
+  font-family: "Bank Gothic", "Futura", "Arial";
 }

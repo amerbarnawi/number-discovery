@@ -1,14 +1,35 @@
 .result-card {
   text-align: left;
   margin: 5px 20px 20px 20px;
-  padding: 8px;
-  border: 1px solid black;
+  padding: 12px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  display: flex;
+  flex-direction: column;
 }
 
 .result-icon {
   margin-left: 5px;
+  font-size: 20px;
+  color: rgb(103, 162, 103);
 }
 
-.delete-card {
+.delete-card-icon,
+.save-card-icon {
   cursor: pointer;
+}
+
+.delete-card-icon {
+  color: red;
+}
+
+.save-card-icon {
+  color: green;
+}
+
+.save-and-delete-icons {
+  align-self: flex-end;
+}
+
+.result-card span {
+  color: rgb(236, 92, 92);
 }

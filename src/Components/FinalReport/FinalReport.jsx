@@ -32,27 +32,27 @@ function FinalReport({ comparingResult }) {
   return (
     <div className="final-report">
       <img src={winner} alt="win cub" />
-      <h3>
+      <h2>
         Congratulations, you won! <GiPartyPopper />
-      </h3>
+      </h2>
       <div className="user-evaluations">
         <p>
-          <GiBrainstorm /> {brain}
+          <GiBrainstorm className="icon" /> {brain}
         </p>
         <p>
-          <RiShieldStarFill /> {star}
+          <RiShieldStarFill className="icon" /> {star}
         </p>
         <p>
-          <BsCardChecklist /> {12}
+          <BsCardChecklist className="icon" /> {12}
         </p>
 
         <p>
-          <GiSandsOfTime /> {time}
+          <GiSandsOfTime className="icon" /> {time}
         </p>
       </div>
-      <h3>{`Your final result is: ${
+      <h2>{`Your final result is: ${
         finalResult > 100 ? 100 : finalResult.toFixed(2)
-      } %`}</h3>
+      } %`}</h2>
     </div>
   );
 }

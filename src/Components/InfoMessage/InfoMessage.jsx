@@ -5,10 +5,13 @@ import { TiMessages } from "react-icons/ti";
 
 function InfoMessage({ message }) {
   return (
-    <div className="info-message">
-      <div>
-        {message.status === "error" ? <MdOutlineError /> : <TiMessages />}
-      </div>
+    <div
+      className={
+        message.status === "error"
+          ? "info-message info-message-error"
+          : "info-message"
+      }
+    >
       <h3>{message.status === "error" ? <p>Note</p> : <p>Message</p>}</h3>
       <p>{message.text}</p>
     </div>

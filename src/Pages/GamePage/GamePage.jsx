@@ -92,7 +92,7 @@ function GamePage() {
       fourthNum: random(),
     });
     setIsRestart(false);
-    setMessage({ status: "message", text: "Welcome, you can start!" });
+    setMessage({ status: "message", text: "Welcome, you can play!" });
   }, [isRestart]);
 
   // ===============================================================
@@ -133,7 +133,6 @@ function GamePage() {
     }
     if (userNumber.fourthNum === "") {
       setUserNumber({ ...userNumber, fourthNum: +chosenNumber });
-      inputRef.firstInputRef.current.focus();
       return;
     }
   };
@@ -253,8 +252,8 @@ function GamePage() {
   return (
     <div className="game-layout">
       <div className="results">
-        <p>
-          <BsCardChecklist /> Attempts: {comparingResult.length}
+        <p className="cards-numbers">
+          <BsCardChecklist /> {comparingResult.length}
         </p>
         {comparingResult.map((result, index) => (
           <ResultCard

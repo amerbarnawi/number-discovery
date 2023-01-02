@@ -60,15 +60,15 @@ function Timer({ isRestart }) {
   return (
     <div className="timer-container">
       <div className="hour-container">
-        <p>{hour < 10 ? `0${hour}` : hour}</p>
+        <p className="timer-number">{hour < 10 ? `0${hour}` : hour}</p>
         <p>Hours</p>
       </div>
       <div className="minute-container">
-        <p>{minute < 10 ? `0${minute}` : minute}</p>
+        <p className="timer-number">{minute < 10 ? `0${minute}` : minute}</p>
         <p>Minutes</p>
       </div>
       <div className="second-container">
-        <p>{second < 10 ? `0${second}` : second}</p>
+        <p className="timer-number">{second < 10 ? `0${second}` : second}</p>
         <p>Seconds</p>
       </div>
     </div>

@@ -29,33 +29,36 @@ function ResultCard({ comparingResult, status }) {
 
   return (
     <div className="result-card">
-      <div>
+      <div className="save-and-delete-icons">
         {status === "important" ? (
           <AiOutlineDelete
-            className="delete-card"
+            className="delete-card-icon"
             id={comparingResult.id}
             onClick={(e) => filterImportantCards(e)}
           />
         ) : (
           <TfiSave
+            className="save-card-icon"
             id={comparingResult.id}
             onClick={(e) => addCardToImportant(e)}
           />
         )}
       </div>
-      <p>Your number is: {comparingResult.userNumber.join("")}</p>
-      <p>
-        The result is:{" "}
-        {comparingResult.result.map((sign, index) => {
-          if (sign === "-") {
-            return <BsPatchMinusFill className="result-icon" key={index} />;
-          } else if (sign === "+") {
-            return <BsPatchPlusFill className="result-icon" key={index} />;
-          } else {
-            return sign;
-          }
-        })}
-      </p>
+      <div>
+        <p>Your number is: {comparingResult.userNumber.join("")}</p>
+        <p>
+          The result is:{" "}
+          {comparingResult.result.map((sign, index) => {
+            if (sign === "-") {
+              return <BsPatchMinusFill className="result-icon" key={index} />;
+            } else if (sign === "+") {
+              return <BsPatchPlusFill className="result-icon" key={index} />;
+            } else {
+              return <span>{sign}</span>;
+            }
+          })}
+        </p>
+      </div>
     </div>
   );
 }

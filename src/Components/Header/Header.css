@@ -1,4 +1,39 @@
 .header {
-  background-color: green;
+  background-color: black;
   height: 80px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  color: white;
+}
+
+.header-navbar {
+  margin-right: 30px;
+  align-self: center;
+}
+
+.header-app-name {
+  margin-left: 20px;
+}
+
+.header-navbar .navbar-button {
+  margin-left: 10px;
+  color: white;
+  background-color: black;
+  border: white 1px solid;
+  border-radius: 20px;
+  padding: 10px;
+  text-decoration: none;
+  text-align: center;
+  width: 300px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.header-navbar .navbar-button:hover {
+  box-shadow: 0px 3px 8px 1px white;
+}
+
+.logo {
+  color: #ffd700;
 }

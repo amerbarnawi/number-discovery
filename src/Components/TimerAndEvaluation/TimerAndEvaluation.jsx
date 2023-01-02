@@ -4,6 +4,7 @@ import { GiBrainstorm } from "react-icons/gi";
 import { RiShieldStarFill } from "react-icons/ri";
 import { FaArrowAltCircleUp, FaArrowCircleDown } from "react-icons/fa";
 import { useGlobalVariables } from "../../Context/GlobalVariables";
+import "../TimerAndEvaluation/TimerAndEvaluation.css";
 
 function TimerAndEvaluation({ isRestart, arrow, setArrow }) {
   const { star, brain } = useGlobalVariables();
@@ -23,9 +24,9 @@ function TimerAndEvaluation({ isRestart, arrow, setArrow }) {
 
   const getBrainClass = (state) => {
     if (arrow.brainUp && state === "up") {
-      return "brain-arrow";
+      return "brain-arrow arrow-up";
     } else if (arrow.brainDown && state === "down") {
-      return "brain-arrow";
+      return "brain-arrow arrow-down";
     } else {
       return "arrow-hidden";
     }
@@ -33,17 +34,17 @@ function TimerAndEvaluation({ isRestart, arrow, setArrow }) {
 
   return (
     <div className="timer-and-evaluation">
-      <div>
+      <div className="brain-container">
         <GiBrainstorm /> {brain}{" "}
         <FaArrowAltCircleUp className={getBrainClass("up")} />
         <FaArrowCircleDown className={getBrainClass("down")} />
       </div>
       <Timer isRestart={isRestart} />
-      <div>
+      <div className="star-container">
         <FaArrowAltCircleUp
           className={arrow.starUp ? "star-arrow" : "arrow-hidden"}
         />{" "}
-        {star} <RiShieldStarFill />
+        {star} <RiShieldStarFill className="star-icon" />
       </div>
     </div>
   );

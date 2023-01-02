@@ -1,0 +1,25 @@
+.timer-and-evaluation {
+  box-shadow: rgba(231, 10, 216, 0.35) 0px 5px 15px;
+}
+
+.brain-container {
+  margin-left: 20px;
+  font-size: 25px;
+}
+
+.star-container {
+  margin-right: 20px;
+  font-size: 25px;
+}
+
+.star-arrow {
+  color: green;
+}
+
+.arrow-down {
+  color: red;
+}
+
+.arrow-up {
+  color: green;
+}

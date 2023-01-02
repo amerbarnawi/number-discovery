@@ -2,3 +2,7 @@
   overflow: scroll;
   height: 300px;
 }
+
+.important-cards-title {
+  color: rgb(154, 150, 150);
+}
