@@ -1,6 +1,6 @@
 # number-discovery
 
-You can play this game from here: ![Number Discovery](https://number-discovery.netlify.app/)
+You can play this game from here: [Number Discovery](https://number-discovery.netlify.app/)
 
 ## The game page
 
