@@ -54,7 +54,7 @@ function ResultCard({ comparingResult, status }) {
             } else if (sign === "+") {
               return <BsPatchPlusFill className="result-icon" key={index} />;
             } else {
-              return <span>{sign}</span>;
+              return <span key={index}>{sign}</span>;
             }
           })}
         </p>

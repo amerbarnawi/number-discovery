@@ -20,8 +20,6 @@ function TimerAndEvaluation({ isRestart, arrow, setArrow }) {
     return () => clearTimeout(timeOut);
   });
 
-  console.log(arrow);
-
   const getBrainClass = (state) => {
     if (arrow.brainUp && state === "up") {
       return "brain-arrow arrow-up";
@@ -35,7 +33,7 @@ function TimerAndEvaluation({ isRestart, arrow, setArrow }) {
   return (
     <div className="timer-and-evaluation">
       <div className="brain-container">
-        <GiBrainstorm /> {brain}{" "}
+        <GiBrainstorm className="brain-icon" /> {brain}{" "}
         <FaArrowAltCircleUp className={getBrainClass("up")} />
         <FaArrowCircleDown className={getBrainClass("down")} />
       </div>

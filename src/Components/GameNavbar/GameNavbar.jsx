@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { RiRestartFill } from "react-icons/ri";
 import { ImHome } from "react-icons/im";
-import { NavLink } from "react-router-dom";
 import { SiGoogleanalytics } from "react-icons/si";
 import "../GameNavbar/GameNavbar.css";
 import InfoMessage from "../InfoMessage/InfoMessage";
@@ -9,13 +8,7 @@ import ImportantCards from "../ImportantCards/ImportantCards";
 import { useGlobalVariables } from "../../Context/GlobalVariables";
 import Report from "../Report/Report";
 
-function GameNavbar({
-  setIsRestart,
-  message,
-  setMessage,
-  setIsPopupTrigger,
-  setISHomePage,
-}) {
+function GameNavbar({ message, setMessage, setIsPopupTrigger }) {
   const { isReport, setIsReport, isWon } = useGlobalVariables();
 
   useEffect(() => {
@@ -25,7 +18,7 @@ function GameNavbar({
       }, 3000);
       return () => clearInterval(timeOut);
     }
-  }, [message]);
+  }, [message, setMessage]);
 
   return (
     <div className="navbar-box">

@@ -27,7 +27,7 @@
 
 .numbers-buttons button:hover {
   color: green;
-  transition: all 0.3s;
+  transition: all 0.2s;
 }
 
 .numbers-buttons button:active {

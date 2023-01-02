@@ -292,7 +292,6 @@ function GamePage() {
       </div>
       <div className="game-navbar">
         <GameNavbar
-          setIsRestart={setIsRestart}
           message={message}
           setMessage={setMessage}
           setIsPopupTrigger={setIsPopupTrigger}

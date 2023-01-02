@@ -42,6 +42,7 @@ function WelcomePage() {
         <h3>{gameData.example.title}</h3>
         <p>{gameData.example.description}</p>
       </div>
+      <p className="programmer-name">This game is developed by: Amer Barnawi</p>
       <NavLink to="game-page">Game</NavLink>
     </div>
   );
