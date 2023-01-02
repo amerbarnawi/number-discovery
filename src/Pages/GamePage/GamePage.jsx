@@ -77,9 +77,9 @@ function GamePage() {
     }
   }, [brain]);
 
-  useEffect(() => {
-    console.log(computerNumbers);
-  }, [computerNumbers]);
+  // useEffect(() => {
+  //   console.log(computerNumbers);
+  // }, [computerNumbers]);
 
   // ===============================================================
   // Generating computer random numbers.

@@ -1,7 +1,5 @@
 import React from "react";
 import "../InfoMessage/InfoMessage.css";
-import { MdOutlineError } from "react-icons/md";
-import { TiMessages } from "react-icons/ti";
 
 function InfoMessage({ message }) {
   return (
