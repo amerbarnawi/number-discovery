@@ -3,9 +3,10 @@ import { useGlobalVariables } from "../../Context/GlobalVariables";
 import { GiBrainstorm } from "react-icons/gi";
 import { RiShieldStarFill } from "react-icons/ri";
 import { GiSandsOfTime } from "react-icons/gi";
+import { BsCardChecklist } from "react-icons/bs";
 import "../Report/Report.css";
 
-function Report() {
+function Report({ comparingResult }) {
   const { star, brain, time, setIsReport } = useGlobalVariables();
 
   return (
@@ -16,6 +17,9 @@ function Report() {
       </p>
       <p>
         <RiShieldStarFill /> {star}
+      </p>
+      <p>
+        <BsCardChecklist /> {comparingResult.length}
       </p>
       <p>
         <GiSandsOfTime /> {time}

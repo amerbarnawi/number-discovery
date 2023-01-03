@@ -2,6 +2,8 @@
 
 You can play this game from here: [Number Discovery](https://number-discovery.netlify.app/)
 
+Front-End application ( The app is not responsive ).
+
 ## The game page
 
 ![The game page](/public/game-page.png)
@@ -18,3 +20,8 @@ You can play this game from here: [Number Discovery](https://number-discovery.ne
     - CSS.3
     - JavaScript
     - React
+
+## Advice to use the app
+
+    - Google chrome as browser.
+    - For developer: ( npm start ) to run the app locally.

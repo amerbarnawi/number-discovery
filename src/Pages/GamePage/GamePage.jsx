@@ -295,6 +295,7 @@ function GamePage() {
           message={message}
           setMessage={setMessage}
           setIsPopupTrigger={setIsPopupTrigger}
+          comparingResult={comparingResult}
         />
       </div>
       <Popup

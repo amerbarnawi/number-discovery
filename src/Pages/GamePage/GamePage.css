@@ -1,7 +1,7 @@
 .game-layout {
   display: flex;
   flex-direction: row;
-  height: 105vh;
+  height: 110vh;
   margin-top: 30px;
 }
 

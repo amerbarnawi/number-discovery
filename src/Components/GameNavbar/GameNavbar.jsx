@@ -8,7 +8,12 @@ import ImportantCards from "../ImportantCards/ImportantCards";
 import { useGlobalVariables } from "../../Context/GlobalVariables";
 import Report from "../Report/Report";
 
-function GameNavbar({ message, setMessage, setIsPopupTrigger }) {
+function GameNavbar({
+  message,
+  setMessage,
+  setIsPopupTrigger,
+  comparingResult,
+}) {
   const { isReport, setIsReport, isWon } = useGlobalVariables();
 
   useEffect(() => {
@@ -46,11 +51,11 @@ function GameNavbar({ message, setMessage, setIsPopupTrigger }) {
         </div>
       </div>
       {isReport && message.status !== "error" && !isWon ? (
-        <Report />
+        <Report comparingResult={comparingResult} />
       ) : (
         <InfoMessage message={message} />
       )}
-      <ImportantCards />
+      {isReport ? "" : <ImportantCards />}
     </div>
   );
 }
