@@ -43,7 +43,7 @@ function FinalReport({ comparingResult }) {
           <RiShieldStarFill className="icon" /> {star}
         </p>
         <p>
-          <BsCardChecklist className="icon" /> {12}
+          <BsCardChecklist className="icon" /> {comparingResult.length}
         </p>
 
         <p>
