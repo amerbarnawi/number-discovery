@@ -8,7 +8,7 @@ function Header() {
     <div className="header">
       <div className="header-app-name">
         <h1>
-          <SiNumpy className="logo" /> umber Discovery
+          <SiNumpy className="logo" /> Number Discovery
         </h1>
       </div>
       <div className="header-navbar">
