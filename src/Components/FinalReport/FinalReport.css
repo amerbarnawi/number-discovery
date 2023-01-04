@@ -34,3 +34,8 @@ img {
 .user-evaluations .icon {
   font-size: 22px;
 }
+
+.final-report span {
+  font-weight: bold;
+  color: #ff0084;
+}

@@ -156,14 +156,16 @@ function GamePage() {
       setBrain(brain - 1);
       setArrow({ ...arrow, brainDown: true, brainUp: false });
     }
-    // Cases of gaining brain
+    // Cases of gaining brain and star
     const isFirstPositive = comparingResult.find(
       (item) => item.result.join("") === lastResult.join("")
     );
     const isPositive =
       lastResult.filter((sign) => sign === "+").length > 2 ? true : false;
+    // Gaining star
     if (isPositive && !isRepeated) {
       setStar(star + 1);
+      // Gaining a brain
       if (!isFirstPositive) {
         setBrain(brain + 1);
         setArrow({ starUp: true, brainUp: true, brainDown: false });

@@ -50,9 +50,10 @@ function FinalReport({ comparingResult }) {
           <GiSandsOfTime className="icon" /> {time}
         </p>
       </div>
-      <h2>{`Your final result is: ${
-        finalResult > 100 ? 100 : finalResult.toFixed(2)
-      } %`}</h2>
+      <h2>
+        Your final result is:
+        <span> {finalResult > 100 ? 100 : finalResult.toFixed(2)} %</span>
+      </h2>
     </div>
   );
 }
