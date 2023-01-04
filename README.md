@@ -8,6 +8,10 @@ Front-End application ( The app is not responsive ).
 
 ![The game page](/public/game-page.png)
 
+## Final result
+
+![The final result](/public/final-result.png)
+
 ## About this game
 
     - The aim of this game is to discover the random number that the computer reserves.
