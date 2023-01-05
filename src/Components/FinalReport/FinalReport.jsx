@@ -12,7 +12,7 @@ function FinalReport({ comparingResult }) {
   const { star, brain, time, endTime } = useGlobalVariables();
 
   // Calculation of the final result (100%)
-  //  The evaluation is not releaseEvents, but it is a principle.
+  // The rating may not be accurate enough, but I'm trying to build a game principle.
 
   // First 3 min are free
   // Every min = -5
@@ -26,7 +26,6 @@ function FinalReport({ comparingResult }) {
   const result = 100 + (brainCost + starCost + attemptCost + timeCost);
   useEffect(() => {
     setFinalResult(result);
-    // console.log(timeCost, brainCost, starCost, attemptCost);
   }, [result]);
 
   return (

@@ -73,13 +73,9 @@ function GamePage() {
   useEffect(() => {
     if (brain === 0) {
       setIsLost(true);
-      setMessage({ status: "message", text: "You lost! try again!" });
+      setMessage({ status: "message", text: "You lost, try again!" });
     }
   }, [brain]);
-
-  // useEffect(() => {
-  //   console.log(computerNumbers);
-  // }, [computerNumbers]);
 
   // ===============================================================
   // Generating computer random numbers.
