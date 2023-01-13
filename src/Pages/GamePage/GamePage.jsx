@@ -211,33 +211,44 @@ function GamePage() {
       +computerNumbers.thirdNum,
       +computerNumbers.fourthNum,
     ];
+    const computerNumberCopy = [...computerNumbersArray];
 
     const lastResult = [];
     const parallelComparison = (user, computer) => {
       user.forEach((number, userNumIndex) => {
+        let stopLoop = false;
         computer.forEach((computerNumber, computerNumIndex) => {
+          if (stopLoop) {
+            return;
+          }
           if (number === computerNumber && userNumIndex === computerNumIndex) {
             lastResult.push("+");
             computer[computerNumIndex] = "*";
             user[userNumIndex] = "@";
+            stopLoop = true;
           }
         });
       });
     };
     const crossComparison = (user, computer) => {
       user.forEach((number, userNumIndex) => {
+        let stopLoop = false;
         computer.forEach((computerNumber, computerNumIndex) => {
+          if (stopLoop) {
+            return;
+          }
           if (number === computerNumber && userNumIndex !== computerNumIndex) {
             lastResult.push("-");
             computer[computerNumIndex] = "*";
             user[userNumIndex] = "@";
+            stopLoop = true;
           }
         });
       });
     };
 
-    parallelComparison(userNumberCopy, computerNumbersArray);
-    crossComparison(userNumberCopy, computerNumbersArray);
+    parallelComparison(userNumberCopy, computerNumberCopy);
+    crossComparison(userNumberCopy, computerNumberCopy);
 
     if (lastResult.length === 0) {
       lastResult.push("No numbers");

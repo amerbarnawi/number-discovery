@@ -27,6 +27,15 @@ function GameNavbar({
     }
   }, [message, setMessage]);
 
+  const handleDescription = () => {
+    if (!isDescription) {
+      setMessage({ status: "message", text: "The timer has been paused!" });
+    } else {
+      setMessage({ status: "message", text: "Keep going .." });
+    }
+    setIsDescription(!isDescription);
+  };
+
   return (
     <div className="navbar-box">
       <div className="navbar-buttons">
@@ -39,10 +48,7 @@ function GameNavbar({
           <ImHome className="navbar-icon" />
           <p>Home</p>
         </div>
-        <div
-          className="navbar-button"
-          onClick={() => setIsDescription(!isDescription)}
-        >
+        <div className="navbar-button" onClick={() => handleDescription()}>
           <MdDescription className="navbar-icon" />
           <p>Description</p>
         </div>
