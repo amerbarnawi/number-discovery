@@ -13,6 +13,7 @@ import Popup from "../../Components/Popup/Popup";
 import RestartPopup from "../../Components/PopupComponents/RestartPopup/RestartPopup";
 import HomePagePopup from "../../Components/PopupComponents/HomePagePopup/HomePagePopup";
 import { Navigate } from "react-router-dom";
+import WelcomePage from "../WelcomePage/WelcomePage";
 
 function GamePage() {
   const [isLost, setIsLost] = useState(false);
@@ -22,6 +23,7 @@ function GamePage() {
   const [isRestart, setIsRestart] = useState(true);
   const [isPopupTrigger, setIsPopupTrigger] = useState({ status: false });
   const [isNavigate, setIsNavigate] = useState(false);
+
   const [arrow, setArrow] = useState({
     brainUp: false,
     brainDown: false,
@@ -43,6 +45,8 @@ function GamePage() {
     setBrain,
     isWon,
     setIsWon,
+    isDescription,
+    setIsDescription,
   } = useGlobalVariables();
 
   // ===============================================================
@@ -55,6 +59,7 @@ function GamePage() {
     setIsLost(false);
     setIsWon(false);
     setImportantCards([]);
+    setIsDescription(false);
     setArrow({
       brainUp: false,
       brainDown: false,
@@ -253,14 +258,16 @@ function GamePage() {
         <p className="cards-numbers">
           <BsCardChecklist /> {comparingResult.length}
         </p>
-        {comparingResult.map((result, index) => (
-          <ResultCard
-            key={index}
-            comparingResult={result}
-            setImportantCards={setImportantCards}
-            importantCards={importantCards}
-          />
-        ))}
+        {isDescription
+          ? ""
+          : comparingResult.map((result, index) => (
+              <ResultCard
+                key={index}
+                comparingResult={result}
+                setImportantCards={setImportantCards}
+                importantCards={importantCards}
+              />
+            ))}
       </div>
 
       <div className="game-controller">
@@ -268,7 +275,11 @@ function GamePage() {
           <FinalReport comparingResult={comparingResult} />
         </div>
 
-        <div className={isWon ? "hidden" : "main-side"}>
+        <div className={isDescription ? "description" : "hidden"}>
+          <WelcomePage />
+        </div>
+
+        <div className={isWon || isDescription ? "hidden" : "main-side"}>
           <TimerAndEvaluation
             isRestart={isRestart}
             setArrow={setArrow}

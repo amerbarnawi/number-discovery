@@ -14,6 +14,7 @@ export function VariablesProvider({ children }) {
   const [isReport, setIsReport] = useState(false);
   const [isWon, setIsWon] = useState(false);
   const [endTime, setEndTime] = useState(0);
+  const [isDescription, setIsDescription] = useState(false);
 
   return (
     <GlobalVariables.Provider
@@ -32,6 +33,8 @@ export function VariablesProvider({ children }) {
         setIsWon,
         endTime,
         setEndTime,
+        isDescription,
+        setIsDescription,
       }}
     >
       {children}

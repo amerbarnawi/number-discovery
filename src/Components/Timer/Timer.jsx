@@ -7,7 +7,8 @@ function Timer({ isRestart }) {
   const [minute, setMinute] = useState(0);
   const [hour, setHour] = useState(0);
 
-  const { setTime, isReport, isWon, setEndTime } = useGlobalVariables();
+  const { setTime, isReport, isWon, setEndTime, isDescription } =
+    useGlobalVariables();
   const time = `${hour}:${minute}:${second}`;
   // The end time per minute
   const endTime = hour * 60 + minute + second / 60;
@@ -36,7 +37,7 @@ function Timer({ isRestart }) {
   }, [isRestart]);
 
   useEffect(() => {
-    if (!isWon) {
+    if (!isWon && !isDescription) {
       const interval = setInterval(() => {
         if (second < 59) {
           setSecond(second + 1);
@@ -55,7 +56,7 @@ function Timer({ isRestart }) {
 
       return () => clearInterval(interval);
     }
-  }, [second, minute, hour, isWon]);
+  }, [second, minute, hour, isWon, isDescription]);
 
   return (
     <div className="timer-container">

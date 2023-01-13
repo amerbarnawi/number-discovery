@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { RiRestartFill } from "react-icons/ri";
 import { ImHome } from "react-icons/im";
 import { SiGoogleanalytics } from "react-icons/si";
+import { MdDescription } from "react-icons/md";
 import "../GameNavbar/GameNavbar.css";
 import InfoMessage from "../InfoMessage/InfoMessage";
 import ImportantCards from "../ImportantCards/ImportantCards";
@@ -14,7 +15,8 @@ function GameNavbar({
   setIsPopupTrigger,
   comparingResult,
 }) {
-  const { isReport, setIsReport, isWon } = useGlobalVariables();
+  const { isReport, setIsReport, isWon, isDescription, setIsDescription } =
+    useGlobalVariables();
 
   useEffect(() => {
     if (message.status === "error") {
@@ -37,7 +39,13 @@ function GameNavbar({
           <ImHome className="navbar-icon" />
           <p>Home</p>
         </div>
-
+        <div
+          className="navbar-button"
+          onClick={() => setIsDescription(!isDescription)}
+        >
+          <MdDescription className="navbar-icon" />
+          <p>Description</p>
+        </div>
         <div
           className="navbar-button"
           onClick={() => setIsPopupTrigger({ status: true, restart: true })}

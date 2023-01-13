@@ -7,7 +7,7 @@
 
 .results {
   overflow: scroll;
-  height: 730px;
+  height: 104vh;
   width: 250px;
   flex: 1;
 }
@@ -36,4 +36,9 @@
 
 .cards-numbers {
   font-size: 20px;
+}
+
+.description {
+  height: 104vh;
+  overflow: scroll;
 }
