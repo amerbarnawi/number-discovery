@@ -282,7 +282,7 @@ function GamePage() {
       </div>
 
       <div className="game-controller">
-        <div className={isWon ? "final-report" : "hidden"}>
+        <div className={isWon && !isDescription ? "final-report" : "hidden"}>
           <FinalReport comparingResult={comparingResult} />
         </div>
 

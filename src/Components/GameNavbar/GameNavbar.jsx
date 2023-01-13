@@ -28,10 +28,12 @@ function GameNavbar({
   }, [message, setMessage]);
 
   const handleDescription = () => {
-    if (!isDescription) {
-      setMessage({ status: "message", text: "The timer has been paused!" });
-    } else {
-      setMessage({ status: "message", text: "Keep going .." });
+    if (!isWon) {
+      if (!isDescription) {
+        setMessage({ status: "message", text: "The timer has been paused!" });
+      } else if (isDescription) {
+        setMessage({ status: "message", text: "Keep going .." });
+      }
     }
     setIsDescription(!isDescription);
   };
