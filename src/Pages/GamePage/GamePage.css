@@ -42,3 +42,9 @@
   height: 104vh;
   overflow: scroll;
 }
+
+@media screen and (max-width: 600px) {
+  .game-layout {
+    display: none;
+  }
+}
