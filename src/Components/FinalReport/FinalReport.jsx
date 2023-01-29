@@ -53,6 +53,10 @@ function FinalReport({ comparingResult }) {
         Your final result is:
         <span> {finalResult > 100 ? 100 : finalResult.toFixed(2)} %</span>
       </h2>
+      <p className="final-report-note">
+        <span>Note:</span> This is not an assessment of your real IQ level, it
+        is just a game.
+      </p>
     </div>
   );
 }
