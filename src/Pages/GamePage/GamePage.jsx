@@ -287,6 +287,9 @@ function GamePage() {
         </div>
 
         <div className={isDescription ? "description" : "hidden"}>
+          <p>
+            # Click on <b>Description</b> to go back!
+          </p>
           <WelcomePage />
         </div>
 
